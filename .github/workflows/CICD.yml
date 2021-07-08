@@ -1,6 +1,6 @@
 name: CI + CD
 
-on:
+on:  
   push:    
   pull_request:
     branches: [ develop, staging, master ]
@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Compile
-        run: echo ${{ github.event_name }} - ${{ github.base_ref }} - ${{ github.ref }} Compile Step...
+        run: echo ${{ github.event_name }} - ${{ github.base_ref }} - ${{ github.ref }} Compile Step..
     
   DeployDev:
     name: Deploy to Dev 
