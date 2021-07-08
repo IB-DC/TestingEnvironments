@@ -19,7 +19,7 @@ jobs:
     
   DeployDev:
     name: Deploy to Dev 
-    if: ( github.event_name == 'pull_request' || github.event_name == 'merge_request' ) && github.base_ref == 'develop'
+    if: github.event_name == 'pull_request' && github.base_ref == 'develop'
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
@@ -31,7 +31,7 @@ jobs:
     
   DeployPreproduction:
     name: Deploy to Preproduction 
-    if: ( github.event_name == 'pull_request' || github.event_name == 'merge_request' ) && github.base_ref == 'staging'
+    if: github.event_name == 'pull_request' && github.base_ref == 'staging'
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
