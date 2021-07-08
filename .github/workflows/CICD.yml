@@ -19,7 +19,7 @@ jobs:
     
   DeployDev:
     name: Deploy to Dev 
-    if: ( github.event_name == 'pull_request' || github.event_name == 'merge_request' ) && github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/develop'
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
