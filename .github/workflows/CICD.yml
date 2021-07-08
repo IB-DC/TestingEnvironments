@@ -7,8 +7,6 @@ on:
   release:
     types:
       - created
-    env:
-      GITHUB_CONTEXT: ${{ toJson(github) }}
 
 jobs:
   Build:
@@ -29,7 +27,7 @@ jobs:
       url: 'http://someweb.com'
     steps:
       - name: Deploy
-        run: 'echo GITHUB_CONTEXT: $GITHUB_CONTEXT'        
+        run: echo Deploying Dev...   
     
   DeployPreproduction:
     name: Deploy to Preproduction 
