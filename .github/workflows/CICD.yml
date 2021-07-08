@@ -19,7 +19,7 @@ jobs:
     
   DeployDev:
     name: Deploy to Dev 
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == "refs/heads/develop"
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
