@@ -19,7 +19,7 @@ jobs:
     
   DeployDev:
     name: Deploy to Dev 
-    if: ( github.event_name == 'pull_request' || github.event_name == 'merge_request' ) && github.ref == 'refs/heads/develop'
+    if: ( github.event_name == 'pull_request' || github.event_name == 'merge_request' ) && github.base_ref == 'develop'
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
@@ -31,7 +31,7 @@ jobs:
     
   DeployPreproduction:
     name: Deploy to Preproduction 
-    if: ( github.event_name == 'pull_request' || github.event_name == 'merge_request' ) && github.ref == 'refs/heads/staging'
+    if: ( github.event_name == 'pull_request' || github.event_name == 'merge_request' ) && github.base_ref == 'staging'
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
@@ -39,7 +39,7 @@ jobs:
       url: 'http://someweb.com'
     steps:
       - name: Deploy
-        run: echo I am deploying! 
+        run: echo I am deploying!! 
             
   DeployProduction:
     name: Deploy to Production 
