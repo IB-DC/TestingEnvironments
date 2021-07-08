@@ -4,7 +4,9 @@ on:
   push:    
   pull_request:
     branches: [ develop, staging, master ]
-  workflow_dispatch:
+  release:
+    types:
+      - created
 
 jobs:
   Build:
@@ -29,8 +31,8 @@ jobs:
     
   DeployPreproduction:
     name: Deploy to Preproduction 
-    if: ithub.event_name == 'pull_request' && github.event.ref == 'refs/heads/staging'
-    needs: [DeployDev]
+    if: github.event_name == 'pull_request' && github.event.ref == 'refs/heads/staging'
+    needs: [Build]
     runs-on: ubuntu-latest
     environment: 
       name: Preproduction
@@ -39,9 +41,9 @@ jobs:
       - name: Deploy
         run: echo I am deploying! 
             
-  DeployProd:
+  DeployProduction:
     name: Deploy to Production 
-    if: ithub.event_name == 'pull_request' && github.event.ref == 'refs/heads/master'
+    if: github.event_name == 'release'
     needs: [DeployPreproduction]
     runs-on: ubuntu-latest
     environment: 
