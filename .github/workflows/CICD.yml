@@ -3,7 +3,8 @@ name: CI + CD
 on:  
   push:  
   pull_request:  
-    branches: [ develop, staging, master ]
+    branches: [ develop, staging ]
+    types: [closed]
   release:
     types:
       - created
