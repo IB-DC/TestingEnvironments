@@ -3,9 +3,7 @@ name: CI + CD
 on:  
   push:  
   pull_request:  
-    branches: [ staging ]
-    types: 
-      - closed
+    branches: [ develop, staging ]
   release:
     types:
       - created
@@ -24,7 +22,7 @@ jobs:
     
   DeployDev:
     name: Deploy to Dev 
-    if: github.event_name == 'pull_request' && github.base_ref == 'develop'
+    if: github.event_name == 'pull_request' && github.base_ref == 'develop' && github.event.action == 'closed' && github.event.pull_request.merged == true
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
@@ -36,7 +34,7 @@ jobs:
     
   DeployPreproduction:
     name: Deploy to Preproduction 
-    if: github.event_name == 'pull_request' && github.base_ref == 'staging'
+    if: github.event_name == 'pull_request' && github.base_ref == 'staging' && github.event.action == 'closed' && github.event.pull_request.merged == true
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
