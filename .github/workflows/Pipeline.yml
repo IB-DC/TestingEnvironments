@@ -2,14 +2,6 @@ name: pipeline nueva
 
 on:  
   push:  
-    branches-ignore: [ develop, staging ]    
-
-  pull_request:  
-    branches: [ develop, staging ]
-
-  release:
-    types: [ created ]
-
 
 env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -20,7 +12,7 @@ jobs:
     steps:
       - uses: devopsviewnext/workflows_generic@v1
         with:
-          workflow: CI + CD
+          workflow: CICD
           token: ${{ secrets.PERSONAL_TOKEN }}
 
 
