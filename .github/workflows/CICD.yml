@@ -8,7 +8,7 @@ on:
     branches: [ develop, staging ]
 
   release:
-  
+
 env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
 
@@ -48,7 +48,7 @@ jobs:
   DeployProduction:
     name: Deploy to Production 
     if: github.event_name == 'release'
-    needs: [Build]
+    needs: [Build, Preproduction]
     runs-on: ubuntu-latest
     environment: 
       name: Production
