@@ -10,7 +10,7 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      - uses: devopsviewnext/workflows_generic@v1
+      - uses: devopsviewnext/workflows_generic@v2
         with:
           workflow: CICDJAVA
           token: ${{ secrets.PERSONAL_TOKEN }}
