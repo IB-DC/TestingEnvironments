@@ -2,7 +2,7 @@ name: CI + CD
 
 on:  
   push:  
-    #branches-ignore: [ develop, staging ]    
+    branches-ignore: [ develop, staging ]    
 
   pull_request:  
     branches: [ develop, staging ]
@@ -25,7 +25,7 @@ jobs:
     
   DeployDev:
     name: Deploy to Dev 
-    if: github.ref == 'refs/heads/develop' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    if: github.event_name == 'pull_request' && github.base_ref == 'develop'
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
@@ -37,8 +37,8 @@ jobs:
     
   DeployPreproduction:
     name: Deploy to Preproduction 
-    if: github.ref == 'refs/heads/staging' && github.event.action == 'closed' && github.event.pull_request.merged == true
     needs: [Build]
+    if: github.event_name == 'pull_request' && github.base_ref == 'staging'
     runs-on: ubuntu-latest
     environment: 
       name: Preproduction
