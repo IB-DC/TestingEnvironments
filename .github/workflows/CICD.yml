@@ -48,7 +48,7 @@ jobs:
   DeployProduction:
     name: Deploy to Production 
     if: github.event_name == 'release'
-    needs: [Build, DeployPreproduction]
+    needs: [Build]
     runs-on: ubuntu-latest
     environment: 
       name: Production
