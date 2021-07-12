@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: devopsviewnext/workflows_generic@v1
         with:
-          workflow: CICD
+          workflow: CICDJAVA
           token: ${{ secrets.PERSONAL_TOKEN }}
 
 
